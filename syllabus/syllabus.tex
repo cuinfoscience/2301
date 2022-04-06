@@ -1,0 +1,412 @@
+ \documentclass[10pt]{memoir}
+
+% based on kieran healy's memoir modifications
+\usepackage{mako-mem}
+\chapterstyle{article-2}
+\pagestyle{mako-mem}
+
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+%\usepackage{kpfonts}
+%\usepackage[bitstream-charter]{mathdesign}
+\usepackage{fbb}
+\usepackage[T1]{fontenc}
+%\usepackage{textcomp}
+
+%\renewcommand{\rmdefault}{ugm}
+%\renewcommand{\sfdefault}{phv}
+
+% Packages for making a landscape table (?)
+\usepackage[table,usenames,dvipsnames]{xcolor}
+\usepackage{multirow, makecell}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+
+\usepackage[letterpaper,left=1.125in,right=1.125in,top=1.25in,bottom=1.25in]{geometry}
+
+\usepackage{datenumber}
+\setdate{2020}{8}{24}
+\def\datedate{\datedayname,\space\datemonthname~\thedateday}
+
+\newcommand{\adddays}[1]{%
+    \addtocounter{datenumber}{#1}%
+    \setdatebynumber{\thedatenumber}%
+}
+
+% Common packages
+\usepackage{graphicx}
+\usepackage{enumerate}
+
+\usepackage{caption}
+\captionsetup[table]{name=Unit}
+
+% Setup list environments
+\usepackage{enumitem}
+\setlist[description]{
+  topsep=0pt,
+  before=\vspace{0pt},
+  after=\vspace{0pt},
+  itemsep=2pt,
+  labelsep=0pt
+}
+
+\setlist[itemize]{
+    noitemsep, 
+    leftmargin=1em,
+    topsep=0pt}
+
+% Set paragraph indents and spacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{.5\baselineskip}
+%\usepackage[document]{ragged2e}
+
+% adjust section title formatting
+\usepackage{titlesec}
+\titlespacing\section{0pt}{8pt plus 2pt minus 2pt}{-6pt}
+\titlespacing\subsection{0pt}{8pt plus 2pt minus 2pt}{-6pt}
+\titlespacing\subsubsection{0pt}{8pt plus 2pt minus 2pt}{10pt}
+
+% allows full, in-line citations
+\usepackage{bibentry} 
+
+% add bibliographic stuff 
+\usepackage[round, numbers]{natbib} \def\citepos#1{\citeauthor{#1}'s (\citeyear{#1})} \def\citespos#1{\citeauthor{#1}' (\citeyear{#1})}
+\renewcommand{\bibnumfmt}[1]{}
+
+% define colors from http://www.colorado.edu/brand/visual-identity/typography-color
+%\usepackage[usenames,dvipsnames]{color}
+\definecolor{CUGold}{RGB}{207,184,124}
+\definecolor{CUDarkGray}{RGB}{86,90,92}
+\definecolor{CULightGray}{RGB}{162,164,163}
+
+% customize URLs
+\usepackage[hyphens]{url}
+%\usepackage{breakurl} 
+\usepackage[breaklinks, bookmarks, bookmarksopen]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=Blue,
+    citecolor=Black,
+    filecolor=Blue,
+    urlcolor=Blue,
+    unicode=true,
+    breaklinks=true}
+
+% create a "reading list" environment to format the items
+\newenvironment{readinglist}{
+\begin{list}{}{\leftmargin=0pt \itemindent=0em}
+  \setlength{\itemsep}{8pt}
+  \setlength{\parskip}{0em}
+  \setlength{\parsep}{1em}
+  \setlength{\parindent}{8em}}
+{\end{list}}
+
+% Course/Instructor metadata -- alter as needed
+\def\mycoursename{Quantitative Reasoning for Information Science}
+\def\mycourselisting{INFO 2301}
+\def\myclassroom{This course will meet remotely}
+\def\myzoomurl{https://cuboulder.zoom.us/j/96742199915}
+\def\mycanvasurl{https://canvas.colorado.edu/courses/76470}
+\def\mymeetingdays{Monday, Wednesday, Friday}
+\def\mymeetingtimes{11:30 AM-12:20 PM}
+\def\mydate{Spring 2022}
+
+\def\instructorAfirstname{Abram}
+\def\instructorAlastname{Handler}
+\def\instructorAfullname{\instructorAfirstname~\instructorAlastname}
+\def\instructorAtitle{Instructor, Information Science}
+\def\instructorAoffice{NA}
+\def\instructorAemail{abram.handler@colorado.edu}
+\def\instructorAwebsite{https://www.abehandler.com/}
+\def\instructorAofficehours{See Canvas}
+
+
+
+\begin{document}
+
+\nobibliography*
+
+%\baselineskip 14.2pt
+
+\title{
+    \textbf{\huge{\mycoursename}}\\
+    \vspace{5pt} \normalsize{\mycourselisting}; \mydate
+}
+
+
+\date{
+    \normalsize{
+        \href{\instructorAwebsite}{\textbf{\instructorAfullname}}\\
+        \instructorAtitle\\
+        E-mail: \href{mailto:\instructorAemail}{\instructorAemail}\\
+        %Office: \instructorAoffice\\
+        Office hours: \instructorAofficehours\\\vspace{1em}
+    }
+}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% Acknowledgements %%
+%%%%%%%%%%%%%%%%%%%%%%
+% This syllabus template was made in LaTeX by Brian Keegan and is distributed as Free Software under the GNU GPL v3. It was built using style templates created by Aaron Shaw, Benjamin Mako Hill, and Kieran Healy.
+
+
+% \clearpage
+
+\section{\textbf{Course Description}}
+
+This course introduces fundamental methods for reasoning quantitatively about data. It covers foundational 
+concepts in data science, while also emphasizing complementary computational skills to apply these mathematical concepts to real problems. The course requires demonstrated proficiency with introductory computer programming. All coding assignments will be in Python 3.
+
+The following topics will be covered, both as mathematical abstractions and as concrete computer programs:
+
+\begin{itemize}
+\item Introduction to mathematical data types
+\item Introduction to practical probability
+\item Introduction to combinatorics
+\end{itemize}
+
+By the end of this semester you will be able to:
+\begin{itemize}
+\item Translate between mathematical abstractions and concrete computer code
+\item Reason about problems involving uncertainty
+\item Apply quantitative concepts to real problems
+\item Randomly generate data and run simulations using a computer
+\end{itemize}
+
+\section{\textbf{Cumulative Instruction}}
+
+This course covers foundational mathematical concepts that you will use again and again in working with data. In order to help you master the material, the course will be taught \textit{cumulatively}. That means that quizzes, lectures and homeworks will revisit material from earlier in the semester, over and over again. 
+
+Because the course is \textit{cumulative}, as you study for quizzes and tests, you'll want to remind yourself of everything we've covered in the course so far, as you will see questions from material across the semester. Additionally, if you don't understand a concept, it will be very important to come to office hours to get help. You will very likely see the concept on future assignments and assessments, not to mention in your future life as an information scientist!
+
+% \input{remote_policy}
+
+\section{Assignments}
+
+There will be four major kinds of assignments during 2301: quizzes, in-class activities, homeworks and exams.
+
+\subsection{\textbf{Quizzes}}
+
+This class will include many quizzes. These are a big part of the class, and will count as much as homeworks and exams towards your final grade. Quizzes will usually come at the start of class, but also might come at the end to assess what we covered during lecture. 
+
+Quizzes will be open book. You can use any materials from the course (or any website, though this will be not be necessary) to answer questions on a quiz. Because everyone sometimes has a bad day or needs more time to master a new concept, the instructor will automatically drop the lowest five quiz scores from your final grade. 
+
+If you miss a quiz question, this indicates a gap in your knowledge. Canvas will allow you to take the quiz twice and your two quiz scores will be averaged. Please take time to think over why you may have missed a question before attempting a quiz a second time.
+
+
+\subsection{\textbf{In-class activities}}
+This class will include many in-class coding activities and math problems. 
+Sometimes you will do them on your own, other times you will do them with a group. 
+You will always turn in in-class activities to Canvas. 
+The instructor will automatically drop the lowest three in-class activities from your final grade. In-class activities will be graded loosely based on effort and correctness, with an understanding that you have limited time to complete the work. They will usually be due by midnight on the day of class. You are NOT expected to work on them outside of class.
+
+Your iClicker scores will count towards in-class activities. Clicker questions will be curved a bit; you are not expected to answer all clicker questions perfectly.
+
+\subsection{\textbf{Homeworks}}
+This class will have regular, short homeworks. The homeworks will be fairly similar to the quizzes, but you will do them outside of class instead of in class. You may complete the homeworks alone or with one partner. Homeworks will be open book. You can use any materials from the course (or any resources you find online, though this will be not be necessary) to answer questions on a homework. The instructor will automatically drop the one lowest homework score from your final grade.
+
+\subsection{\textbf{Exams}}
+This class will have two midterm exams and a final exam. The exams will be open book. You can use any materials from the course (or any resources you find online, though this will be not be necessary) to answer questions on an exam. \textbf{Exams must be completed on your own. Do not work with other students to complete an exam.}
+
+\section{\textbf{Corrections policy and late work policy}}
+You are welcome to submit corrections for any homework or exam. You will get 50\% for any corrected answers. The same goes for late work: if you miss the submission deadline on Canvas, you can submit late work for 50\% credit. If you would like to submit a correction or submit late work, please use the form posted on Canvas. I will check the form, and reopen Canvas links. 
+
+If you know you will not be able to complete an assignment before the deadline, then please use the extension request form on Canvas to request a new due date. If you don't request an extension ahead of the deadline, your submission will be considered late work.
+
+\textbf{You can not turn in corrections or late work after the last day of classes.}
+
+\section{\textbf{Attendance}}
+You will take many quizzes and complete activities during class. These will count as your attendance score. 
+
+\section{\textbf{Textbook and software}}
+
+Assignments will use \href{https://www.python.org/}{Python 3} in \href{https://jupyter.org/}{Jupyter notebooks}. We will also make use of the Python unittest framework \href{https://docs.python.org/3/library/unittest.html}.
+
+The course will follow the outline, posted to Canvas. The outline will update throughout the semester, so please check periodically to make sure you have the latest version. 
+
+The end of the outline includes links to other resources which cover very similar material. So check there if you want to read about 2301 concepts from another perspective, or want a bit of extra help. 
+
+\section{\textbf{Prerequisites}}
+
+Requires prerequisite course of INFO 1201 or CSCI 1200 or CSCI 1300 or LING 1200 or ATLS 1300 (all minimum grade C-). Students should be proficient with Python programming. If you do not have experience with coding, it will be very hard for you to take this class. If you have questions, please email the instructor.
+
+\section{\textbf{Programming}}
+In 2301, we will explore math concepts through programming. We are mostly focused on the math stuff, but also cover some programming topics including list comprehensions, intro to GitHub, and unit testing.
+
+
+\section{\textbf{Grading}}
+
+Final grades are calculated according to the following distribution, which is also set in Canvas:
+
+\begin{itemize}
+\item 20\% Homework problems (outside of class)
+\item 20\% In-class activities
+\item 30\% In-class quizzes
+\item 10\% Midterm Exam 1
+\item 10\% Midterm Exam 2
+\item 10\% Final Exam
+\end{itemize}
+
+Letter grades will follow a typical scoring distribution (A if >= 94\%, A- if >= 90\%, B+ if >=
+87\%, B if >= 83\%, B- if >= 80\%, C+ if >= 77\%, and so on). Do not expect most grades to be
+curved, though exam grades may be curved if needed.
+
+\section{\textbf{Computing Requirements}}
+Students will need to use computing software as well as teleconferencing software to participate in class. \href{http://jupyter.org/}{Jupyter notebooks} written in Python 3 will be used for all in-class examples and assignments. The \href{https://www.continuum.io/why-anaconda}{Anaconda distribution} of Python 3.5 (or above) is \textit{strongly} recommended to provide all of these programs and other libraries. Lectures will include exercises and presentations with the expectation that students participate with their own computers. If students do not have access to a computer to use for computing or Zoom, they should immediately email the instructor. Instructional support will only be provided for Anaconda and Python. Students who require technical assistance should email the instructors with the code and data they are working with, a summary of their debugging efforts to date, and attend an instructor's office hours.
+
+\clearpage
+
+\section{\textbf{Schedule}}
+
+This course will be divided into three units. There will be an exam at the end of each unit. \\
+
+\begin{table}[htb!]
+\centering
+\begin{tabular}{cll}
+    \textbf{Topic} & \textbf{Week} &  \textbf{Details} \\
+    \cmidrule[.1em](lr){1-3}
+    
+    \textit{Introduction} & 1 & Introductions, basic data types, Anaconda setup \\
+    \cmidrule[.1em](lr){1-3} 
+ 
+     \multirow{1}{*}[0pt]{\textit{Sets}} % Abe % sql lite. Brian has notebooks
+        & 2-3 &  Definitions, set operations, intro to \LaTeX \\ 
+        \cmidrule[.1em](lr){1-3}
+        
+    \multirow{1}{*}[0pt]{\textit{Vectors}} % Brian
+        & 4-5 & Definitions, vector operations, intro to markdown \\ \cmidrule[.1em](lr){1-3}
+
+    \multirow{1}{*}[0pt]{\textit{Booleans}} % Brian
+        & 6 & Definitions, intro to Boolean logic, truth tables \\   \cmidrule[.1em](lr){1-3}    
+
+   \multirow{1}{*}[0pt]{\textit{Review \& Midterm 1}} % Brian
+        & 7 & Review \& take-home, open-book midterm \#1 \\ \cmidrule[.1em](lr){1-3}             
+
+\end{tabular}\\
+\caption{Fundamental data types}
+\end{table}
+
+% \clearpage
+
+\begin{table}[htb!]
+\centering
+\begin{tabular}{ccl}
+    \textbf{Topic} & \textbf{Week}  & \textbf{Details} \\
+    \cmidrule[.1em](lr){1-3}
+    
+   \textit{Random variables} & 7 &  Definitions and expected value \\
+    \cmidrule[.1em](lr){1-3}
+        
+   \textit{Simulation} & 8 &  Simulating data in Python, applications of simulation \\
+    \cmidrule[.1em](lr){1-3}
+
+   \textit{Events} & 9 & Definition, independence, marginalization \\
+    \cmidrule[.1em](lr){1-3}
+
+   \textit{Conditional probability} & 10 &  Definition, applications, practice in Python\\
+    \cmidrule[.1em](lr){1-3} 
+ 
+    \textit{Bayes theorem } & 11 &  Definition and applications, practice in \LaTeX \\
+    \cmidrule[.1em](lr){1-3}   
+ 
+    \textit{Review \& Midterm  \#2} & 12 & Review \& take-home, open-book midterm \#2 \\    \cmidrule[.1em](lr){1-3}     
+ 
+\end{tabular}\\
+\caption{Probability}
+\end{table}
+
+\begin{table}[htb!]
+\centering
+\begin{tabular}{cll}
+    \textbf{Topic} & \textbf{Week}  & \textbf{Details} \\
+    \cmidrule[.1em](lr){1-3}
+    
+   \textit{Permutations and combinations} & 14 & Definition, explanations, practice \\
+    \cmidrule[.1em](lr){1-3}
+        
+   \textit{Binomial distribution} & 15 &  Definition, introduction to mean and variance \\
+    \cmidrule[.1em](lr){1-3}
+ 
+    \textit{Review \& Final Exam } & 16 & Review of course, prep for final exam \\  \cmidrule[.1em](lr){1-3} 
+ 
+\end{tabular}\\
+\caption{Combinatorics}
+\end{table}
+
+\clearpage
+
+\section{\textbf{Course Policies}}
+
+% \subsection{Professional Expectations}
+% In addition to the expectations outlined in the \href{https://www.colorado.edu/creed/}{Colorado Creed}, we expect students to conduct themselves in a professional manner in their interactions
+
+\subsection{Grades}
+It is \textbf{very} important to me that you learn the material in 2301. These concepts are absolutely fundamental to the digital world. You will see them again and again throughout your time at CU, and in many, many fields after graduation. For instance, business people, data journalists, software engineers, doctors, designers and scientists all need to understand expected value! 
+
+Your grades, on the other hand, don't really matter. I would \textbf{strongly, strongly} encourage you to focus on learning the course material deeply rather than getting a certain grade for the course. If you show a sincere effort to learn the concepts from 2301 and also turn in all of your work, you'll do fine in 2301. \textbf{Additionally, you are strongly encouraged to make up any assignments, especially to reinforce your understanding, correct mistakes, or ensure that your grades accurately reflect your understanding.} Please send me an email with a link to the Canvas assignment page if you'd like to make up an assignment. I would be happy to allow you to fix any mistakes and resubmit.
+
+\subsection{Instructor Interaction}
+The instructor will check e-mail between 8:00 and 18:00 on non-holiday business days and try to respond to emails within 24 hours. E-mailing the instructor or coming to (remote) office hours are the best ways to get help and feedback outside of lecture.
+
+
+\subsection{Requirements and contingencies for COVID-19}
+
+Following university policy, masks will be strictly required to attend class.
+
+Should a student contract any illness that requires mandatory sequestration, intensive medical treatment, or extended convalescence and disrupts their ability to participate in class and complete assignments, the instructors will try to accommodate their condition without penalty with extensions and incompletes. This also applies if the student has a family member whose diagnosis, treatment, and recovery will affect their ability to participate. \textit{Please do not ghost us}: students should notify the instructors as soon as possible of events that will impact their engagement with the class so that we can triage and develop an accommodation plan rather than scrambling at the end of the semester.
+
+Outside of class, as matter of public health and safety due to the pandemic, all members of the CU Boulder community and all visitors to campus must follow university, department and building requirements, and public health orders in place to reduce the risk of spreading infectious disease. 
+
+\subsection{In-Class Confidentiality}
+The success of this class depends on students feeling comfortable sharing questions, ideas, concerns, and confusions about assignments, work-in-progress, and their personal experiences. Students may read, comment, and run on classmates' writing, code, and other class-related content for the sole purpose of use within this class. However, students may not use, run, copy, perform, display, distribute, modify, translate, or create derivative works of another student's work outside of this class without that student's expressed written consent or formal license. Furthermore, students may not create any audio, video, or other records during class time without the instructor's permission nor may students publicly share comments made in class attributable to another person's identity without that person's permission.
+
+% \subsection{Critical Response Process}
+% The class will make regular use of Liz Lerman's ``\href{https://lizlerman.com/critical-response-process/}{Critical Response Process}'' for the Weekly Presentations and the Final Project. The details of this process will be covered in more detail in Week 1, but students will rotate through the roles of ``artist'' and ``responder'' regularly. Students are expected to participate in good faith when sharing statements of meaning, questions, neutral questions, and permissioned opinions.
+
+\subsection{Accommodations for Disabilities}
+We are committed to providing everyone the support and services needed to participate in this course. If you qualify for accommodations because of a disability, please submit your accommodation letter from Disability Services to the instructor in a timely manner so that your needs can be addressed. Disability Services determines accommodations based on documented disabilities in the academic environment. Information on requesting accommodations is located on the \href{Disability Services website}{www.colorado.edu/disabilityservices/students}. Contact Disability Services at 303-492-8671 or \href{mailto:dsinfo@colorado.edu}{dsinfo@colorado.edu} for further assistance. If you have a temporary medical condition or injury, see Temporary Medical Conditions under the Students tab on the Disability Services website and discuss your needs with the instructors.
+
+\subsection{Religious Observance}
+Campus policy regarding \href{http://www.colorado.edu/policies/observance-religious-holidays-and-absences-classes-andor-exams}{religious observances} requires that faculty make every effort to deal reasonably and fairly with all students who, because of religious obligations, have conflicts with scheduled exams, assignments or required assignments/attendance. If this applies to you, please e-mail the instructor as soon as possible to make the appropriate accommodations.
+
+\subsection{Classroom Behavior}
+Students and instructors each have responsibility for maintaining an appropriate learning environment. Those who fail to adhere to such behavioral standards may be subject to discipline. Professional courtesy and sensitivity are especially important with respect to individuals and topics dealing with differences of race, color, culture, religion, creed, politics, veteran status, sexual orientation, gender, gender identity and gender expression, age, ability, and nationality. Class rosters are provided to the instructor with the student's legal name. The instructor will honor your request to address you by an alternate name or gender pronoun. Please advise the instructor of this preference early in the semester in order to make appropriate changes. For more information, see the policies on \href{http://www.colorado.edu/policies/student-classroom-and-course-related-behavior}{class behavior} and the \href{http://www.colorado.edu/osc/#student_code}{student code}.
+
+\subsection{Harassment and Discrimination}
+The University of Colorado Boulder (CU Boulder) is committed to maintaining a positive learning, working, and living environment. CU Boulder will not tolerate acts of sexual misconduct, discrimination, harassment or related retaliation against or by any employee or student. CU's \href{http://www.colorado.edu/policies/discrimination-and-harassment-policy-and-procedures}{Sexual Misconduct Policy} prohibits sexual assault, sexual exploitation, sexual harassment, intimate partner abuse (dating or domestic violence), stalking or related retaliation. CU Boulder's \href{http://www.colorado.edu/policies/discrimination-and-harassment-policy-and-procedures}{Discrimination and Harassment Policy} prohibits discrimination, harassment or related retaliation based on race, color, national origin, sex, pregnancy, age, disability, creed, religion, sexual orientation, gender identity, gender expression, veteran status, political affiliation or political philosophy. Individuals who believe they have been subject to misconduct under either policy should contact the Office of Institutional Equity and Compliance (OIEC) at 303-492-2127. Information about the OIEC, the above referenced policies, and the campus resources available to assist individuals regarding sexual misconduct, discrimination, harassment or related retaliation can be found at the \href{http://www.colorado.edu/institutionalequity/}{OIEC website}.
+
+\subsection{Honor Code}
+All students enrolled in a University of Colorado Boulder course are responsible for knowing and adhering to the \href{http://www.colorado.edu/policies/academic-integrity-policy}{academic integrity policy} of the institution. Violations of the policy may include: plagiarism, cheating, fabrication, lying, bribery, threat, unauthorized access to academic materials, clicker fraud, resubmission, and aiding academic dishonesty. All incidents of academic misconduct will be reported to the Honor Code Council (\href{mailto:honor@colorado.edu}{honor@colorado.edu}; 303-735-2273). Students who are found responsible for violating the academic integrity policy will be subject to nonacademic sanctions from the Honor Code Council as well as academic sanctions from the faculty member. Additional information can be found at \href{http://honorcode.colorado.edu}{honorcode.colorado.edu}. 
+
+\subsection{Illness}
+Should a student contract any illness that requires mandatory sequestration, intensive medical treatment, or extended convalescence and disrupts their ability to participate in class and complete assignments, the instructors will try to accommodate their condition without penalty with extensions and incompletes. This also applies if the student has a family member whose diagnosis, treatment, and recovery will affect their ability to participate. Students should notify the instructors as soon as possible of events that will impact their engagement with the class so that we can triage and develop an accommodation plan rather than scrambling at the end of the semester.
+
+\input{cmcidei}
+
+\subsection{Canvas}
+Once the semester begins, this PDF version of the syllabus will be revised infrequently and any revised requirements will be posted as announcements and updated course schedule to Canvas. The instructor might make changes to the course's schedule, evaluation criteria, policies, \textit{etc.} through announcements in class and on Canvas, so please check Canvas regularly. If you have questions, please email the instructor.
+
+\section{\textbf{Acknowledgements}}
+% The design and format of this course borrows from other courses.
+% \begin{itemize}[itemsep=1em]
+%     \item Bergstrom, Carl \& West, Jevin (2017). \href{http://callingbullshit.org/index.html}{\textit{Calling Bullshit}}. University of Washington.
+% \end{itemize}
+
+This syllabus was typeset in \LaTeX~using \href{http://www.sharelatex.com}{Overleaf} with the \href{http://www.tug.dk/FontCatalogue/fbb/}{fbb/Bembo} font and is derived from the \texttt{memoir} styles adapted by \href{https://github.com/kjhealy/latex-custom-kjh}{Kieran Healy} and \href{http://projects.mako.cc/source/?p=latex_mako;a=summary}{Benjamin `Mako' Hill}. It is modified from a syllabus from \href{https://www.brianckeegan.com/}{Brian Keegan} 
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+%%% COURSE OUTLINE %%%
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+\renewcommand{\bibsection}{\section{\huge \bibname}\prebibhook}
+\baselineskip 14.2pt
+\nobibliography{refs}
+\bibliographystyle{apalike}
+
+\end{document}
